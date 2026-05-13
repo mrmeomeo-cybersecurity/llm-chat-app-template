@@ -68,9 +68,10 @@ async function sendMessage() {
 		// Create new assistant response element
 		const assistantMessageEl = document.createElement("div");
 		assistantMessageEl.className = "message assistant-message";
-		assistantMessageEl.innerHTML = "<p></p>";
+		const assistantParagraph = document.createElement("p");
+		assistantMessageEl.appendChild(assistantParagraph);
 		chatMessages.appendChild(assistantMessageEl);
-		const assistantTextEl = assistantMessageEl.querySelector("p");
+		const assistantTextEl = assistantParagraph;
 
 		// Scroll to bottom
 		chatMessages.scrollTop = chatMessages.scrollHeight;
@@ -201,7 +202,9 @@ async function sendMessage() {
 function addMessageToChat(role, content) {
 	const messageEl = document.createElement("div");
 	messageEl.className = `message ${role}-message`;
-	messageEl.innerHTML = `<p>${content}</p>`;
+	const paragraph = document.createElement("p");
+	paragraph.textContent = content;
+	messageEl.appendChild(paragraph);
 	chatMessages.appendChild(messageEl);
 
 	// Scroll to bottom
